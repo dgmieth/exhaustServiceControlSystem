@@ -1,10 +1,12 @@
-import React from 'react';
 import '../../../../index.css';
+import { useState } from 'react';
 import GroupTarefaHeader from './leastElement/GroupTarefaHeader';
 import FamilyHeader from './headers/FamilyHeader'
 import ClassificationHeader from './headers/ClassificationHeader';
+import ModalUserOrInfo from '../../../modals/ModalUserOrInfo';
 
-function GrupoTarefasInfoHeader ({selectedProtocolo}) {
+function GrupoTarefasInfoHeader ({selectedProtocolo,modalType,setModalType}) {
+    //const [modalType, setModalType] = useState('none')
 
     const firstLevePreSabe = 'rgba(52,116,64,1)'
     const secondLevelPreSabe = 'rgba(52,116,64,.6)'
@@ -28,39 +30,43 @@ function GrupoTarefasInfoHeader ({selectedProtocolo}) {
                 <>
                     <FamilyHeader key="preSabe" familyName='Pré Sabe' bgColor={firstLevePreSabe}/>
                         <ClassificationHeader key="preSabeImovel" classificationName='Imóveis' bgColor={secondLevelPreSabe}/>
-                            <GroupTarefaHeader key="preSabeImovelAnalise" name='Análise' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe}/>
-                            <GroupTarefaHeader key="preSabeImovelAvaliacao" name='Avaliação' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe}/>
+                            <GroupTarefaHeader key="preSabeImovelAnalise" modal={{modalType,setModalType}} name='Análise' action="analise" grouping='imovel' type='preSabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe} />
+                            <GroupTarefaHeader key="preSabeImovelAvaliacao" modal={{modalType,setModalType}} name='Avaliação' action="avalia"  grouping='imovel'  type='preSabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe}/>
                         <ClassificationHeader key="preSabeMovel" classificationName='Móveis' bgColor={secondLevelPreSabe}/>        
-                            <GroupTarefaHeader key="preSabeMovelAnalise" name='Análise' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe}/>
-                            <GroupTarefaHeader key="preSabeMovelAvaliacao" name='Avaliação' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe}/>
-                        <ClassificationHeader key="preSabeSemoventes" classificationName='Semoventes' bgColor={secondLevelPreSabe}/>
-                            <GroupTarefaHeader key="preSabeSemoventesAnalise" name='Análise' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe}/>
-                            <GroupTarefaHeader key="preSabeSemoventeslAvaliacao" name='Avaliação' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe}/>
-                        <ClassificationHeader key="preSabeOnus" classificationName='Ônus' bgColor={secondLevelPreSabe}/>
-                            <GroupTarefaHeader key="preSabeOnusAnalise" name='Análise' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe}/>
-                            <GroupTarefaHeader key="preSabeOnuslAvaliacao" name='Avaliação' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe}/>
+                            <GroupTarefaHeader key="preSabeMovelAnalise" modal={{modalType,setModalType}} name='Análise' action="analise"  grouping='movel'  type='preSabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe}/>
+                            <GroupTarefaHeader key="preSabeMovelAvaliacao" modal={{modalType,setModalType}} name='Avaliação' action="avalia"  grouping='movel'  type='preSabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe}/>
+                        <ClassificationHeader key="preSabeSemoventes" classificationName='Semoventes'  bgColor={secondLevelPreSabe}/>
+                            <GroupTarefaHeader key="preSabeSemoventesAnalise" modal={{modalType,setModalType}} name='Análise' action="analise"  grouping='semovente'  type='preSabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe}/>
+                            <GroupTarefaHeader key="preSabeSemoventeslAvaliacao" modal={{modalType,setModalType}} name='Avaliação' action="avalia" grouping='semovente'  type='preSabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe}/>
+                        {/* <ClassificationHeader key="preSabeOnus" classificationName='Ônus' bgColor={secondLevelPreSabe}/>
+                            <GroupTarefaHeader key="preSabeOnusAnalise" modal={{modalType,setModalType}} name='Análise' action="analise"  grouping='onus'  type='preSabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe}/>
+                            <GroupTarefaHeader key="preSabeOnuslAvaliacao" modal={{modalType,setModalType}} name='Avaliação' action="avalia"  grouping='onus'  type='preSabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPreSabe}/> */}
 
                     <hr style={{margin:'2px 0'}} />
                     <FamilyHeader key="sabe" familyName='Sabe' bgColor={firstLeveSabe}/>
                     <ClassificationHeader key="sabeImovel" classificationName='Imóveis' bgColor={secondLevelSabe}/>
-                            <GroupTarefaHeader key="sabeImovelAnalise" name='Análise' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
-                            <GroupTarefaHeader key="sabeImovelAvaliacao" name='Avaliação' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
+                            {/* <GroupTarefaHeader key="sabeImovelAnalise" modal={{modalType,setModalType}} name='Análise' action="analise"  grouping='imovel' type='sabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
+                            <GroupTarefaHeader key="sabeImovelAvaliacao" modal={{modalType,setModalType}} name='Avaliação' action="avalia"  grouping='imovel' type='sabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/> */}
+                            <GroupTarefaHeader key="sabeImovelAnalise" modal={{modalType,setModalType}} name='Atualizar' action="atualiza"  grouping='imovel' type='sabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
                         <ClassificationHeader key="sabeMovel" classificationName='Móveis' bgColor={secondLevelSabe}/>        
-                            <GroupTarefaHeader key="sabeMovelAnalise" name='Análise' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
-                            <GroupTarefaHeader key="sabeMovelAvaliacao" name='Avaliação' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
+                            {/* <GroupTarefaHeader key="sabeMovelAnalise" modal={{modalType,setModalType}} name='Análise' action="analise"  grouping='movel' type='sabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
+                            <GroupTarefaHeader key="sabeMovelAvaliacao" modal={{modalType,setModalType}} name='Avaliação' action="avalia"  grouping='movel' type='sabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/> */}
+                            <GroupTarefaHeader key="sabeMovelAnalise" modal={{modalType,setModalType}} name='Atualizar' action="atualiza"  grouping='movel' type='sabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
                         <ClassificationHeader key="sabeSemoventes" classificationName='Semoventes' bgColor={secondLevelSabe}/>
-                            <GroupTarefaHeader key="sabeSemoventesAnalise" name='Análise' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
-                            <GroupTarefaHeader key="sabeSemoventeslAvaliacao" name='Avaliação' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
+                            {/* <GroupTarefaHeader key="sabeSemoventesAnalise" modal={{modalType,setModalType}} name='Análise' action="analise"  grouping='semovente' type='sabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
+                            <GroupTarefaHeader key="sabeSemoventeslAvaliacao" modal={{modalType,setModalType}} name='Avaliação' action="avalia"  grouping='semovente' type='sabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/> */}
+                            <GroupTarefaHeader key="sabeSemoventesAnalise" modal={{modalType,setModalType}} name='Atualizar' action="atualiza"  grouping='semovente' type='sabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
                         <ClassificationHeader key="sabeOnus" classificationName='Ônus' bgColor={secondLevelSabe}/>
-                            <GroupTarefaHeader key="sabeOnusAnalise" name='Análise' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
-                            <GroupTarefaHeader key="sabeOnuslAvaliacao" name='Avaliação' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
+                            {/* <GroupTarefaHeader key="sabeOnusAnalise" modal={{modalType,setModalType}} name='Análise' action="analise"  grouping='onus' type='sabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
+                            <GroupTarefaHeader key="sabeOnuslAvaliacao" modal={{modalType,setModalType}} name='Avaliação' action="avalia"  grouping='onus' type='sabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/> */}
+                            <GroupTarefaHeader key="sabeOnusAnalise" modal={{modalType,setModalType}} name='Atualizar' action="atualiza"  grouping='onus' type='sabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelSabe}/>
 
                     <hr style={{margin:'2px 0'}} />
                     <FamilyHeader familyName='Pós Sabe' bgColor={firstLevePosSabe}/>
                         <ClassificationHeader classificationName='Relatórios' bgColor={secondLevelPosSabe}/>
-                        <GroupTarefaHeader key="posSabeOnusSubirSecex" name='Subir SECEX' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPosSabe}/>
-                        <GroupTarefaHeader key="posSabeOnusAssinar" name='Assinar' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPosSabe}/>
-                        <GroupTarefaHeader key="posSabeOnusConcluir" name='Concluir' selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPosSabe}/>
+                            <GroupTarefaHeader key="posSabeOnusSubirSecex" modal={{modalType,setModalType}} name='Subir SECEX' action="subirSecex"  grouping="relatorio" type='posSabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPosSabe}/>
+                            <GroupTarefaHeader key="posSabeOnusAssinar" modal={{modalType,setModalType}} name='Assinar' action="assinatura"  grouping="relatorio" type='posSabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPosSabe}/>
+                            <GroupTarefaHeader key="posSabeOnusConcluir" modal={{modalType,setModalType}} name='Concluir' action="concluirProtocolo"  grouping="relatorio" type='posSabe' modalType={modalType} setModalType={setModalType} selectedProtocolo={selectedProtocolo} bgColor={thirdLevelPosSabe}/>
                 </>
             }
                 

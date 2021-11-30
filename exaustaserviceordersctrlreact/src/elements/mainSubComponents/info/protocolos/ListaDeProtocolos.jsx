@@ -5,10 +5,8 @@ import Protocolo from './leastElementUnit/Protocolo';
 import ProtocoloAtivoHeading from './headers/ProtocoloAtivoHeading';
 import ProtocoloConcluídosHeading from './headers/ProtocoloConcluídosHeading';
 import ProtocoloExcluidosHeading from './headers/ProtocoloExcluidosHeading';
-import ModalUserOrInfo from '../../../modals/ModalUserOrInfo';
 
-function ListaDeProtocolos({selectProtocolo,selectedProtocolo}){
-    const [modalType, setModalType] = useState('none')
+function ListaDeProtocolos({selectProtocolo,selectedProtocolo, modalType, setModalType}){
     const { protocolos } = useContext(ProtocoloContext)
     const protocoloAtivos = protocolos.filter(p =>{
         return p.concluido ===0 && p.excluido === 0 
@@ -20,8 +18,7 @@ function ListaDeProtocolos({selectProtocolo,selectedProtocolo}){
         return p.excluido === 1 
     })
     return (
-        <div key="listProtocolo" id="listProtocolos" className=".container-fluid mx-auto my-auto text-center row w-100" style={{height: '100%!important',padding: 0,margin:0}}>
-            <ModalUserOrInfo type={modalType} />
+        <div key="listProtocolo" id="listProtocolos" className=".container-fluid mx-auto my-auto text-center row w-100" style={{height: '100%!important',padding: 0,margin:0,backgroundColor: 'rgb(59, 59, 59)'}}>
             <ProtocoloAtivoHeading key="headingProtocolosAtivos" protocolos={protocoloAtivos} />
             {protocoloAtivos.map(((p,index) => (
                 <Protocolo key={'protAtivos_ID'+index} protocolo={p} showButtons={true} type={'ativos'} selectProtocolo={selectProtocolo} selectedProtocolo={selectedProtocolo} modalType={modalType} setModalType={setModalType}/>

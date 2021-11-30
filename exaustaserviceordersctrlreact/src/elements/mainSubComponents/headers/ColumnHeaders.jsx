@@ -7,7 +7,7 @@ function ColumnHeaders ({sendProtocoloToParent}) {
     const {protocolos,addProtocolo} = useContext(ProtocoloContext)
     const newProtocolo = ()=>{
         var prot = prompt('Novo protocolo')
-        addProtocolo({prot: prot})
+        addProtocolo(prot)
     }
     
     return (

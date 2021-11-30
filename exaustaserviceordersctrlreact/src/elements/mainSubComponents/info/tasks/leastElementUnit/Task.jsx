@@ -1,59 +1,20 @@
 import React, {useContext} from 'react';
-import { ProtocoloContext } from '../../../../contexts/ProtocoloContext';
 import '../../../../../index.css';
-import addUserImg from '../../../../../img/addUser.png'
-import addNoteImg from '../../../../../img/addNote.png'
-import finishProt from '../../../../../img/finishProt.png'
-import ModalUserOrInfo from '../../../../modals/ModalUserOrInfo';
-import { TarefaContext } from '../../../../contexts/TarefaContext';
+import Global from '../../../../GlobalVariables'
 
 
-function Protocolo({protocolo,showButtons,type,selectProtocolo,selectedProtocolo,modalType,setModalType}){
-    const {protocolos, delProtocolo, addUser,addNote } = useContext(ProtocoloContext)
-    const{setTarefas,setTasksFilter}=useContext(TarefaContext)
+
+function Task({task}){
     
-    const deletarProtocolo = (protocolo)=>{
-        var just = prompt('Motivo da Exclusão')
-        var obj = {...protocolo, just}
-        delProtocolo(obj)
-    }
-    const deletarUser = (e) => {
-        console.log(e)
-        addUser(e)
-    }
-    const deletarNota = (e)=> {
-        console.log(e)
-        addNote(e)
-    }
-    const protocoloSelecionado = (value) => {
-        var id = parseInt(value.split('_')[1])
-        var filteredProtocolo = protocolos.filter(p => { return p.id === id})
-        if(type==='excluidos'){
-            selectProtocolo(null)
-            var alertTimer = setInterval(() => {
-                alert(`Motivo da exclusão: ${filteredProtocolo[0].just}`)
-                clearInterval(alertTimer)
-            }, 75);
-        }else{
-            console.log(filteredProtocolo[0].prot)
-            selectProtocolo(filteredProtocolo[0])
-        }
-        setTarefas([])
-        setTasksFilter(null)
-    }
-    const ativProt = type === 'excluidos' ? 'rgba(255, 164, 173,1)' : type === 'concluidos' ? 'rgba(253, 194, 146,1)' : 'rgba(181, 180, 245,1)'
-    const bgColorSelectedProtocolo = selectedProtocolo===null ? ativProt : protocolo.prot===selectedProtocolo.prot ? 'rgba(204, 255, 153,1)' : ativProt
-    const protId = `protId_${protocolo.id}`
     return (
-        <div key={protId} id={protId} className="col-12 w-100 .container-fluid" style={{backgroundColor:bgColorSelectedProtocolo, minHeight:'30px',padding: 0,margin:'4px 0 0 0',textAlign:'start',fontWeight:700,border:'solid rgb(255, 255, 255) 2px'}}>
-                
+        <div className="col-12 w-100 .container-fluid" style={{minHeight:'30px',padding: 0,margin:'4px 0 0 0',textAlign:'start',border:'solid rgb(255, 255, 255) 2px'}}>
                 <div className=".container-fluid mx-auto my-auto row w-100 text-center teste" style={{padding:'0px 8px',alignItems:'center',alignContent:'center'}}>
-                    <a className='.container-fluid mx-auto my-auto text-center w-100' onClick={()=>{protocoloSelecionado(protId)}} style={{padding:'0',textDecoration:'none',color:'black',cursor:'pointer'}}>
-                        <div className="col-12 h-100 my-auto" style={{fontFamily:'arial',fontSize:'16px',padding:0,textAlign:'center',alignContent:'center'}}>
-                            {protocolo.prot}
+                    <a className='.container-fluid mx-auto my-auto text-center w-100' onClick={()=>{}} style={{padding:'0',textDecoration:'none',color:'black',cursor:'pointer'}}>
+                        <div className="col-12 h-100 my-auto" style={{fontFamily:'arial',fontSize:'1rem',padding:0,textAlign:'center',alignContent:'center'}}>
+                            {task}
                         </div>
                     </a>
-                    {showButtons ? 
+                    {/* {showButtons ? 
                         <>
                             <div className="col-3">
                                 <a className="btn btn-outline-danger btn-sm" onClick={()=>{deletarProtocolo(protocolo)}} style={{padding:'0px 5px'}}>X</a>
@@ -157,10 +118,10 @@ function Protocolo({protocolo,showButtons,type,selectProtocolo,selectedProtocolo
                     :
                         <>
                         </>
-                    }
+                    } */}
                 </div>
         </div>
     )
 }
 
-export default Protocolo
+export default Task
